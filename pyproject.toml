@@ -1,0 +1,49 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "pyPowerSystemsInvestmentPortofolios"
+description = "Data Model for Power Systems Invesments Optimization"
+authors = [
+    {name = "José Daniel Lara", email = "josedaniel.lara@nrel.gov"},
+]
+classifiers = [
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering",
+    "License :: OSI Approved :: BSD License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+]
+dynamic = ["version"]
+requires-python = ">=3.9"
+license = {file = "LICENSE"}
+readme = "README.md"
+dependencies = [
+    "pydantic~=1.10.11",
+]
+
+[tool.hatch.version]
+path = "mdao4grid/__init__.py"
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[project.optional-dependencies]
+dev = [
+    "black",
+    "flake8",
+    "pre-commit",
+    "pylint",
+    "pytest",
+    "pytest-cov",
+]
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "-ra"
+testpaths = [
+    "tests",
+]
