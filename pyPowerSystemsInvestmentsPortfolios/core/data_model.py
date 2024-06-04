@@ -4,77 +4,78 @@
 
 from __future__ import annotations
 
-from enum import Enum
+from enum import StrEnum
 from typing import List, Optional
 
-from pydantic import BaseModel, Field
+from infrasys import Component
+from pydantic import Field
 
 
-class Fuel(Enum):
-    CO = 'CO'
-    BT = 'BT'
-    HY = 'HY'
+class Fuel(StrEnum):
+    CO = "CO"
+    BT = "BT"
+    HY = "HY"
 
 
-class SupplyTechnology(BaseModel):
-    name: str = Field(..., description='The technology name')
+class SupplyTechnology(Component):
+    name: str = Field(..., description="The technology name")
     available: bool = Field(
-        ..., description='identifies whether the technology is available'
+        ..., description="identifies whether the technology is available"
     )
     power_systems_type: str = Field(
-        ..., description='maps to a valid PowerSystems.jl for PCM modeling'
+        ..., description="maps to a valid PowerSystems.jl for PCM modeling"
     )
-    fuel: Fuel = Field(..., description='Fuel type according to IEA')
+    fuel: Fuel = Field(..., description="Fuel type according to IEA")
 
 
-class StorageTech(Enum):
-    LI = 'LI'
-    SI = 'SI'
-    OT = 'OT'
+class StorageTech(StrEnum):
+    LI = "LI"
+    SI = "SI"
+    OT = "OT"
 
 
-class StorageTechnology(BaseModel):
-    name: str = Field(..., description='The technology name')
+class StorageTechnology(Component):
+    name: str = Field(..., description="The technology name")
     available: bool = Field(
-        ..., description='identifies whether the technology is available'
+        ..., description="identifies whether the technology is available"
     )
     power_systems_type: str = Field(
-        ..., description='maps to a valid PowerSystems.jl for PCM modeling'
+        ..., description="maps to a valid PowerSystems.jl for PCM modeling"
     )
-    storage_tech: StorageTech = Field(..., description='Storage Technology Type')
+    storage_tech: StorageTech = Field(..., description="Storage Technology Type")
 
 
-class DemandsideTechnology(BaseModel):
-    name: str = Field(..., description='The technology name')
+class DemandsideTechnology(Component):
+    name: str = Field(..., description="The technology name")
     available: bool = Field(
-        ..., description='identifies whether the technology is available'
+        ..., description="identifies whether the technology is available"
     )
     power_systems_type: str = Field(
-        ..., description='maps to a valid PowerSystems.jl for PCM modeling'
+        ..., description="maps to a valid PowerSystems.jl for PCM modeling"
     )
 
 
-class TransportTechnology(BaseModel):
-    name: str = Field(..., description='The technology name')
+class TransportTechnology(Component):
+    name: str = Field(..., description="The technology name")
     available: bool = Field(
-        ..., description='identifies whether the technology is available'
+        ..., description="identifies whether the technology is available"
     )
     power_systems_type: str = Field(
-        ..., description='maps to a valid PowerSystems.jl for PCM modeling'
+        ..., description="maps to a valid PowerSystems.jl for PCM modeling"
     )
 
 
-class DemandRequirement(BaseModel):
-    name: str = Field(..., description='The technology name')
+class DemandRequirement(Component):
+    name: str = Field(..., description="The technology name")
     available: bool = Field(
-        ..., description='identifies whether the technology is available'
+        ..., description="identifies whether the technology is available"
     )
     power_systems_type: str = Field(
-        ..., description='maps to a valid PowerSystems.jl for PCM modeling'
+        ..., description="maps to a valid PowerSystems.jl for PCM modeling"
     )
 
 
-class PorfolioData(BaseModel):
+class PorfolioData(Component):
     supply_technologies: Optional[List[SupplyTechnology]] = None
     storage_technologies: Optional[List[StorageTechnology]] = None
     demandside_technologies: Optional[List[DemandsideTechnology]] = None
